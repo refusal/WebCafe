@@ -16,7 +16,7 @@ namespace CafeAspNet.Models
                 new TypeOfDish { Name = "Hot Dishs", Id =2 },
                 new TypeOfDish { Name = "Drinks" , Id=3 }
             };
-            MusicStoreEntities.Genres = dishTypes;
+            CafeEntities.Genres = dishTypes;
 
 
             var dish = new List<Dish>
@@ -28,7 +28,7 @@ namespace CafeAspNet.Models
                 new Dish(){ Id=5, Title="Water", TypeId = 3, Price = 1 }
             };
 
-            MusicStoreEntities.Dishs = dish;
+            CafeEntities.Dishs = dish;
         }
     }
 }

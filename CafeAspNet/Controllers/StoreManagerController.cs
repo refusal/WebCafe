@@ -9,25 +9,21 @@ using CafeAspNet.Models;
 
 namespace MvcMusicStore.Controllers
 {
-    [Authorize(Roles = "Administrator")]
     public class StoreManagerController : Controller
     {
 
-        //
-        // GET: /StoreManager/
-
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            var albums = MusicStoreEntities.Dishs;
-            return View(albums.ToList());
+            var dishs = CafeEntities.Dishs;
+            return View(dishs.ToList());
         }
 
         //
         // GET: /StoreManager/Details/5
 
-        public ViewResult Details(int id)
+        public ActionResult Details(int id)
         {
-            Dish album = MusicStoreEntities.Dishs.FirstOrDefault(item => item.Id == id);
+            Dish album = CafeEntities.Dishs.FirstOrDefault(item => item.Id == id);
             return View(album);
         }
 
@@ -36,7 +32,7 @@ namespace MvcMusicStore.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.GenreId = new SelectList(MusicStoreEntities.Genres, "GenreId", "Name");
+            ViewBag.GenreId = new SelectList(CafeEntities.Genres, "GenreId", "Name");
             return View();
         }
 
@@ -48,11 +44,11 @@ namespace MvcMusicStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                MusicStoreEntities.Dishs.Add(album);
+                CafeEntities.Dishs.Add(album);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GenreId = new SelectList(MusicStoreEntities.Genres, "GenreId", "Name", album.TypeId);
+            ViewBag.GenreId = new SelectList(CafeEntities.Genres, "GenreId", "Name", album.TypeId);
             return View(album);
         }
 
@@ -61,8 +57,8 @@ namespace MvcMusicStore.Controllers
 
         public ActionResult Edit(int id)
         {
-            Dish album = MusicStoreEntities.Dishs.FirstOrDefault(albumItem => albumItem.Id == id);
-            ViewBag.GenreId = new SelectList(MusicStoreEntities.Genres, "GenreId", "Name", album.TypeId);
+            Dish album = CafeEntities.Dishs.FirstOrDefault(albumItem => albumItem.Id == id);
+            ViewBag.GenreId = new SelectList(CafeEntities.Genres, "GenreId", "Name", album.TypeId);
             return View(album);
         }
 
@@ -72,7 +68,7 @@ namespace MvcMusicStore.Controllers
         [HttpPost]
         public ActionResult Edit(Dish album)
         {
-            ViewBag.GenreId = new SelectList(MusicStoreEntities.Genres, "GenreId", "Name", album.TypeId);
+            ViewBag.GenreId = new SelectList(CafeEntities.Genres, "GenreId", "Name", album.TypeId);
             return View(album);
         }
 
@@ -81,7 +77,7 @@ namespace MvcMusicStore.Controllers
 
         public ActionResult Delete(int id)
         {
-            Dish album = MusicStoreEntities.Dishs.FirstOrDefault(albumItem => albumItem.Id == id);
+            Dish album = CafeEntities.Dishs.FirstOrDefault(albumItem => albumItem.Id == id);
             return View(album);
         }
 
@@ -91,8 +87,8 @@ namespace MvcMusicStore.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Dish album = MusicStoreEntities.Dishs.FirstOrDefault(albumItem => albumItem.Id == id);
-            MusicStoreEntities.Dishs.Remove(album);
+            Dish album = CafeEntities.Dishs.FirstOrDefault(albumItem => albumItem.Id == id);
+            CafeEntities.Dishs.Remove(album);
             return RedirectToAction("Index");
         }
     }

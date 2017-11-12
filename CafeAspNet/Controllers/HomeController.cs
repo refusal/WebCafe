@@ -19,7 +19,7 @@ namespace CafeAspNet.Controllers
 
         private List<Dish> GetTopSellingAlbums(int count)
         {
-            return MusicStoreEntities.Dishs
+            return CafeEntities.Dishs
             .OrderByDescending(a => a.OrderDetails?.Count())
             .Take(count)
             .ToList();

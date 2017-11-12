@@ -28,7 +28,7 @@ namespace CafeAspNet.Models
         public void AddToCart(Dish album)
         {
             // Get the matching cart and album instances
-            var cartItem = MusicStoreEntities.Carts.FirstOrDefault();
+            var cartItem = CafeEntities.Carts.FirstOrDefault();
 
             if (cartItem == null)
             {
@@ -41,7 +41,7 @@ namespace CafeAspNet.Models
                     DateCreated = DateTime.Now
                 };
 
-                MusicStoreEntities.Carts.Add(cartItem);
+                CafeEntities.Carts.Add(cartItem);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace CafeAspNet.Models
         public int RemoveFromCart(int id)
         {
             // Get the cart
-            var cartItem = MusicStoreEntities.Carts.Single(
+            var cartItem = CafeEntities.Carts.Single(
 cart => cart.CartId == ShoppingCartId
 && cart.RecordId == id);
 
@@ -68,7 +68,7 @@ cart => cart.CartId == ShoppingCartId
                 }
                 else
                 {
-                    MusicStoreEntities.Carts.Remove(cartItem);
+                    CafeEntities.Carts.Remove(cartItem);
                 }
             }
 
@@ -77,23 +77,23 @@ cart => cart.CartId == ShoppingCartId
 
         public void EmptyCart()
         {
-            var cartItems = MusicStoreEntities.Carts.Where(cart => cart.CartId == ShoppingCartId);
+            var cartItems = CafeEntities.Carts.Where(cart => cart.CartId == ShoppingCartId);
 
             foreach (var cartItem in cartItems)
             {
-                MusicStoreEntities.Carts.Remove(cartItem);
+                CafeEntities.Carts.Remove(cartItem);
             }
         }
 
         public List<Cart> GetCartItems()
         {
-            return MusicStoreEntities.Carts?.ToList() ?? new List<Cart>();
+            return CafeEntities.Carts?.ToList() ?? new List<Cart>();
         }
 
         public int GetCount()
         {
             // Get the count of each item in the cart and sum them up
-            int? count = (from cartItems in MusicStoreEntities.Carts
+            int? count = (from cartItems in CafeEntities.Carts
                           select (int?)cartItems.Count).Sum();
 
             // Return 0 if all entries are null
@@ -103,9 +103,9 @@ cart => cart.CartId == ShoppingCartId
         public decimal GetTotal()
         {
             decimal sum = 0;
-            if (MusicStoreEntities.Carts == null)
+            if (CafeEntities.Carts == null)
                 return 0;
-            foreach (var item in MusicStoreEntities.Carts)
+            foreach (var item in CafeEntities.Carts)
             {
                 sum += item.Album?.Price ?? 0 * item.Count;
             }
@@ -132,7 +132,7 @@ cart => cart.CartId == ShoppingCartId
                 // Set the order total of the shopping cart
                 orderTotal += (item.Count * item.Album.Price);
 
-                MusicStoreEntities.OrderDetails.Add(orderDetail);
+                CafeEntities.OrderDetails.Add(orderDetail);
 
             }
 

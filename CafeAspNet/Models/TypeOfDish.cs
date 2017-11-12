@@ -8,6 +8,6 @@ namespace CafeAspNet.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Dish> Dishs => MusicStoreEntities.Dishs.Where(Dish => Dish.TypeId == Id).ToList();
+        public List<Dish> Dishs => CafeEntities.Dishs.Where(Dish => Dish.TypeId == Id).ToList();
     }
 }

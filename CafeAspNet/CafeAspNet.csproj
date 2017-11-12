@@ -88,8 +88,6 @@
     <Folder Include="Views\Store\" />
     <Folder Include="App_Data\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\Account\" />
-    <Folder Include="Views\Checkout\" />
     <Folder Include="Views\ShoppingCart\" />
     <Folder Include="Views\StoreManager\" />
     <Folder Include="Scripts\" />
@@ -107,10 +105,8 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Models\SampleData.cs" />
-    <Compile Include="Models\MusicStoreEntities.cs" />
+    <Compile Include="Models\CafeEntities.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
@@ -133,16 +129,8 @@
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Store\GenreMenu.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
-    <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
-    <Content Include="Views\StoreManager\Create.cshtml" />
     <Content Include="Views\StoreManager\Delete.cshtml" />
-    <Content Include="Views\StoreManager\Details.cshtml" />
     <Content Include="Views\StoreManager\Edit.cshtml" />
     <Content Include="Views\StoreManager\Index.cshtml" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

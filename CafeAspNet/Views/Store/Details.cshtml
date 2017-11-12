@@ -1,18 +1,17 @@
-﻿@model CafeAspNet.Models.Dish
+﻿@model IEnumerable<CafeAspNet.Models.Dish>
 
-@{
-    ViewBag.Title = "Name - " + Model.Title;
-}
-
-<h2>@Model.Title</h2>
-
-<div id="album-details">
-    <p>
-        <em>Price:</em>
-        @String.Format("{0:F}", Model.Price)
-    </p>
-    <p class="button">
-        @Html.ActionLink("Add to cart", "AddToCart", 
-        "ShoppingCart", new { id = Model.Id }, "")
-    </p>
-</div>
+<ul id="categories">
+    @foreach (var dish in Model)
+    {
+         <div id="type-details"> <p>
+		 <b>@String.Format("{0:F}", dish.Title)</b><p>
+         <em>Price:</em>
+         @String.Format("{0:F}", dish.Price)
+         </p>
+         <p class="button">
+         @Html.ActionLink("Add to cart", "AddToCart", 
+         "ShoppingCart", new { id = dish.Id }, "")
+         </p>
+         </div>
+    }
+</ul>

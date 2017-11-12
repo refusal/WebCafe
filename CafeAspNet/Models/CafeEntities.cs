@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace CafeAspNet.Models
 {
-    public class MusicStoreEntities
+    public class CafeEntities
     {
-        private static MusicStoreEntities instance;
+        private static CafeEntities instance;
 
-        private MusicStoreEntities()
+        private CafeEntities()
         { }
 
-        public static MusicStoreEntities getInstance()
+        public static CafeEntities getInstance()
         {
             if (instance == null)
-                instance = new MusicStoreEntities();
+                instance = new CafeEntities();
             return instance;
         }
 

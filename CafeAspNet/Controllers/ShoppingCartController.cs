@@ -3,49 +3,36 @@ using System.Linq;
 using System.Web.Mvc;
 using CafeAspNet.Models;
 using CafeAspNet.ViewModels;
+using System.Diagnostics.PerformanceData;
 
 namespace MvcMusicStore.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        //
-        // GET: /ShoppingCart/
-
         public ActionResult Index()
         {
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems() ?? new List<Cart>(),
                 CartTotal = cart.GetTotal()
             };
 
-            // Return the view
             return View(viewModel);
         }
 
-        //
-        // GET: /Store/AddToCart/5
-
         public ActionResult AddToCart(int id)
         {
-
-            // Retrieve the album from the database
-            var addedAlbum = MusicStoreEntities.Dishs
+            var addedAlbum = CafeEntities.Dishs
                 .Single(album => album.Id == id);
 
-            // Add it to the shopping cart
-            if (MusicStoreEntities.Carts != null)
-                MusicStoreEntities.Carts.Add(new Cart() { AlbumId = addedAlbum.Id, Album = addedAlbum, CartId = addedAlbum.Id.ToString() });
+            if (CafeEntities.Carts != null)
+                CafeEntities.Carts.Add(new Cart() { AlbumId = addedAlbum.Id, Album = addedAlbum, CartId = addedAlbum.Id.ToString(), Count = 1 });
 
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
-
-        //
-        // AJAX: /ShoppingCart/RemoveFromCart/5
 
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
@@ -54,7 +41,7 @@ namespace MvcMusicStore.Controllers
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             // Get the name of the album to display confirmation
-            string albumName = MusicStoreEntities.Carts
+            string albumName = CafeEntities.Carts
                 .Single(item => item.RecordId == id).Album.Title;
 
             // Remove from cart
@@ -73,9 +60,6 @@ namespace MvcMusicStore.Controllers
 
             return Json(results);
         }
-
-        //
-        // GET: /ShoppingCart/CartSummary
 
         [ChildActionOnly]
         public ActionResult CartSummary()
