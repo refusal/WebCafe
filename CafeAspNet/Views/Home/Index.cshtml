@@ -1,0 +1,19 @@
+﻿@model List<CafeAspNet.Models.Dish>
+@{
+    ViewBag.Title = "ASP.NET MVC Music Store";
+}
+<div id="promotion">
+</div>
+
+<h3><em>NEW</em> menu</h3>
+
+<ul id="dish-list">
+    @foreach (var dish in Model)
+    {
+        <li><a href="@Url.Action("Details", "Store",
+                new { id = dish.Id })">
+               
+            <span>@dish.Title</span> </a>
+        </li>
+    }
+</ul>

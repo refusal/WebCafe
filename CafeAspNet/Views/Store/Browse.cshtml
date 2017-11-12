@@ -1,0 +1,21 @@
+﻿@model CafeAspNet.Models.TypeOfDish
+ 
+@{
+    ViewBag.Title = "Browse Dishs";
+}
+ 
+<div class="TypeOfDish">
+    <h3><em>@Model.Name</em> Dishs</h3>
+ 
+    <ul id="dish-list">
+        @foreach (var dish in Model.Dishs)
+        {
+            <li>
+                <a href="@Url.Action("Details")">
+                    <img src="@dish.ArtUrl" />
+                    <span>@dish.Title</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

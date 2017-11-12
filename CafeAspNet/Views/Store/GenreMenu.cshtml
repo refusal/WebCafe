@@ -1,0 +1,12 @@
+﻿@model IEnumerable<CafeAspNet.Models.TypeOfDish>
+
+<ul id="categories">
+    @foreach (var dish in Model)
+    {
+         <li><a href="@Url.Action("Details", "Store",
+                new { id = dish.Id })">
+               
+            <span>@dish.Name</span> </a>
+        </li>
+    }
+</ul>

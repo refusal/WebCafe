@@ -1,0 +1,18 @@
+﻿@model CafeAspNet.Models.Dish
+
+@{
+    ViewBag.Title = "Name - " + Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+<div id="album-details">
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}", Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart", 
+        "ShoppingCart", new { id = Model.Id }, "")
+    </p>
+</div>
